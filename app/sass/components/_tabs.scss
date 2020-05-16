@@ -1,0 +1,60 @@
+.tab {
+  overflow: hidden;
+  border: 1px solid $lightGray-color;
+  background: $white-color;
+  .tab__links {
+    background: inherit;
+    float: left;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background 0.3s;
+    width: 50%;
+    &:hover {
+      background: $lightGray-color;
+    }
+  }
+}
+
+.tab__content {
+  display: none;
+  padding: 15px 12px;
+  border: 1px solid $lightGray-color;
+  border-top: none;
+  flex-direction: column;
+  &.active {
+    display: flex;
+  }
+  .tab__search-wrapper {
+    position: relative;
+    input {
+      width: 100%;
+      padding-right: 25px;
+    }
+    img {
+      position: absolute;
+      width: 100%;
+      max-width: 12px;
+      cursor: pointer;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    & + label {
+      margin-top: 10px;
+    }
+    input {
+      margin-top: 5px;
+    }
+  }
+  input {
+    padding: 6px 8px;
+  }
+}

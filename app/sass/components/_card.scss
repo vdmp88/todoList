@@ -1,0 +1,81 @@
+.card {
+  position: relative;
+  padding: 12px 16px;
+  border: 1px solid $lightGray-color;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+  &:first-child {
+    margin-top: 0;
+  }
+  .card__status {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 6px 15px 6px 8px;
+    display: flex;
+    justify-content: flex-start;
+    border: 2px solid $black-color;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &.card__status--done {
+      border-color: $success;
+      &::before {
+        background: $success;
+      }
+    }
+    &.card__status--hold {
+      border-color: $blue-color;
+      &::before {
+        background: $blue-color;
+      }
+    }
+    &.card__status--pending {
+      border-color: $warning;
+      &::before {
+        background: $warning;
+      }
+    }
+  }
+  .card__text {
+    .card__title {
+      font-weight: 500;
+      font-size: 16px;
+      max-width: 450px;
+    }
+    .card__description {
+      font-weight: 300;
+      font-size: 15px;
+      padding-top: 10px;
+    }
+  }
+  .card__edit-fields {
+    display: flex;
+    flex-direction: column;
+    max-width: 460px;
+    input {
+      padding: 6px 8px;
+      & + input {
+        margin-top: 8px;
+      }
+    }
+  }
+  .card__buttons {
+    display: flex;
+    padding-top: 12px;
+    li {
+      width: 25%;
+    }
+    &.card__edit-actions {
+      li {
+        width: 50%;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.button {
+  padding: 8px 10px;
+  outline: none;
+  &:hover {
+    background: $lightGray-color;
+  }
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  border: none;
+  &.button--add-new {
+    background: $success;
+    margin-top: 20px;
+    color: $white-color;
+  }
+  &.button--search {
+    background: $warning;
+    margin-top: 10px;
+  }
+  &.button--hold {
+    &:hover {
+      background: $blue-color;
+    }
+  }
+  &.button--cancel {
+    &:hover {
+      background: $danger;
+    }
+  }
+  &.button--done {
+    &:hover {
+      background: $success;
+    }
+  }
+  &.button--edit {
+    &:hover {
+      background: $warning;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.list {
+	padding: 20px;
+	li.list__item-wrapper {
+		& + li {
+			margin-top: 12px;
+		}
+	}
+}
