@@ -7,17 +7,19 @@ const list = document.querySelector(".js-list");
 const addForm = document.querySelector(".js-add-item");
 const titleInput = addForm["title"];
 const bodyInput = addForm["body"];
-const dropdownButton = document.querySelector(".dropdown__content");
+const searchForm = document.querySelector(".js-search-input");
+const searchInput = searchForm["search"];
+const resetSearchInput = document.querySelector(".js-reset-search");
+const bulkActions = document.querySelector(".js-bulkActions");
+const sortActions = document.querySelector(".js-sortActions");
 
-function showTabContent(e) {
+let showTabContent = (e) => {
 	tabContent.forEach((element) => {
-		if (e.target.dataset.id === element.id) {
-			element.classList.toggle("active");
-		} else {
-			element.classList.remove("active");
-		}
+		e.target.dataset.id === element.id
+			? element.classList.toggle("active")
+			: element.classList.remove("active");
 	});
-}
+};
 
 tabLinks.forEach((btns) => {
 	btns.addEventListener("click", showTabContent);
@@ -34,9 +36,19 @@ addForm.addEventListener("submit", (e) => {
 	addForm.reset();
 });
 
+searchForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	todos.searchTodo(searchInput);
+});
+
+resetSearchInput.addEventListener("click", (e) => {
+	todos.resetSearch(searchForm);
+});
+
 list.addEventListener("click", (e) => {
 	const currentTarget = e.target;
 	let id = currentTarget.closest(".card").dataset.id;
+
 	if (currentTarget.classList.contains("js-editStatus")) {
 		todos.setStatus(id, "edit");
 	} else if (currentTarget.classList.contains("js-removeStatus")) {
@@ -44,6 +56,7 @@ list.addEventListener("click", (e) => {
 	} else if (currentTarget.classList.contains("js-doneStatus")) {
 		todos.setStatus(id, "done");
 	} else if (currentTarget.classList.contains("js-holdStatus")) {
+		todos.sortByStatus();
 		todos.hasStatus(id, "hold")
 			? todos.setStatus(id, "pending")
 			: todos.setStatus(id, "hold");
@@ -69,14 +82,25 @@ list.addEventListener("submit", (e) => {
 	}
 });
 
-dropdownButton.addEventListener("click", (e) => {
+bulkActions.addEventListener("click", (e) => {
 	const currentTarget = e.target;
+
 	if (currentTarget.classList.contains("js-holdAll")) {
 		todos.holdAll();
 	} else if (currentTarget.classList.contains("js-doneAll")) {
 		todos.doneAll();
 	} else if (currentTarget.classList.contains("js-cancelAll")) {
 		todos.deleteAll();
+	}
+});
+
+sortActions.addEventListener("click", (e) => {
+	const currentTarget = e.target;
+
+	if (currentTarget.classList.contains("js-sortByStatus")) {
+		todos.sortByStatus();
+	} else if (currentTarget.classList.contains("js-sortByTitle")) {
+		todos.sortByTitle(todos.data);
 	}
 });
 

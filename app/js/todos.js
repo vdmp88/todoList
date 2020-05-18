@@ -6,32 +6,45 @@ class Todos {
 		this.data = [
 			{
 				id: this.generateId(),
-				title:
-					"sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+				title: "Сходить в магазин за продуктами",
 				body:
 					"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
 				status: "pending",
 			},
 			{
 				id: this.generateId(),
-				title: "qui est esse",
+				title: "Выгулять собаку",
 				body:
 					"est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
 				status: "done",
 			},
 			{
 				id: this.generateId(),
-				title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+				title: "Заняться спортом",
 				body:
 					"et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
 				status: "hold",
 			},
 			{
 				id: this.generateId(),
-				title: "qui est esse",
+				title: "Выучить JavaScript",
 				body:
 					"est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
 				status: "pending",
+			},
+			{
+				id: this.generateId(),
+				title: "Сделать домашнее задание",
+				body:
+					"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+				status: "done",
+			},
+			{
+				id: this.generateId(),
+				title: "Закрыть сессию",
+				body:
+					"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+				status: "hold",
 			},
 		];
 	}
@@ -54,6 +67,7 @@ class Todos {
 				todo.status = todoStatus;
 			}
 		});
+
 		ui.renderTodos(this.data);
 	}
 
@@ -63,7 +77,9 @@ class Todos {
 				this.flag ? (todo.status = "pending") : (todo.status = "hold");
 			}
 		});
+
 		this.flag = !this.flag;
+
 		ui.renderTodos(this.data);
 	}
 
@@ -71,6 +87,7 @@ class Todos {
 		this.data.forEach((todo) => {
 			todo.status !== "hold" ? (todo.status = "done") : "";
 		});
+
 		ui.renderTodos(this.data);
 	}
 
@@ -100,6 +117,7 @@ class Todos {
 			body: todo.body,
 			status: "pending",
 		};
+
 		this.data.push(newItem);
 
 		ui.renderTodos(this.data);
@@ -119,6 +137,44 @@ class Todos {
 			todo.id === id ? this.data.splice(index, 1) : "";
 		});
 
+		ui.renderTodos(this.data);
+	}
+
+	searchTodo(input) {
+		let keyword = input.value.toLowerCase();
+		let sortedArray = todos.data.filter((todo) => {
+			return todo.title.toLowerCase().indexOf(keyword) > -1;
+		});
+		ui.renderTodos(sortedArray);
+	}
+
+	resetSearch(form) {
+		form.reset();
+		ui.renderTodos(this.data);
+	}
+
+	sortByTitle(todos) {
+		todos.sort((a, b) => b.title.localeCompare(a.title));
+		ui.renderTodos(this.data);
+	}
+
+	sortByStatus() {
+		let pending = [],
+			hold = [],
+			done = [];
+
+		this.sortByTitle(this.data);
+
+		this.data.forEach((todo) => {
+			this.hasStatus(todo.id, "hold") ? hold.push(todo) : "";
+
+			this.hasStatus(todo.id, "done") ? done.push(todo) : "";
+
+			this.hasStatus(todo.id, "pending") ? pending.push(todo) : "";
+		});
+
+		this.data = [...done, ...hold, ...pending];
+		console.log(this.data);
 		ui.renderTodos(this.data);
 	}
 }
