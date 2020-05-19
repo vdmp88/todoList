@@ -3,7 +3,6 @@ import { todosUI } from "./renderUI.js";
 class Todos {
 	constructor() {
 		this.flag = false;
-		this.loading = true;
 		this.data = [
 			{
 				id: this.generateId(),
