@@ -20,21 +20,37 @@
   &.button--hold {
     &:hover {
       background: $blue-color;
+      &:disabled {
+        background: rgba(0,0,0, .5);
+        color: $black-color;
+      }
     }
   }
   &.button--cancel {
     &:hover {
       background: $danger;
+      &:disabled {
+        background: rgba(0,0,0, .5);
+        color: $black-color;
+      }
     }
   }
   &.button--done {
     &:hover {
       background: $success;
+      &:disabled {
+        background: rgba(0,0,0, .5);
+        color: $black-color;
+      }
     }
   }
   &.button--edit {
     &:hover {
       background: $warning;
+      &:disabled {
+        background: rgba(0,0,0, .5);
+        color: $black-color;
+      }
     }
   }
 }

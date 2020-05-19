@@ -298,12 +298,24 @@ body {
     margin-top: 10px; }
   .button.button--hold:hover {
     background: #46a1de; }
+    .button.button--hold:hover:disabled {
+      background: rgba(0, 0, 0, 0.5);
+      color: #000; }
   .button.button--cancel:hover {
     background: #d64a4b; }
+    .button.button--cancel:hover:disabled {
+      background: rgba(0, 0, 0, 0.5);
+      color: #000; }
   .button.button--done:hover {
     background: #2ecc71; }
+    .button.button--done:hover:disabled {
+      background: rgba(0, 0, 0, 0.5);
+      color: #000; }
   .button.button--edit:hover {
     background: #ffc107; }
+    .button.button--edit:hover:disabled {
+      background: rgba(0, 0, 0, 0.5);
+      color: #000; }
 
 .dropdown {
   display: -webkit-box;
