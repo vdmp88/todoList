@@ -156,7 +156,6 @@ class Todos {
 
 	sortByTitle(todos) {
 		todos.sort((a, b) => b.title.localeCompare(a.title));
-		todosUI.renderTodos(this.data);
 	}
 
 	sortByStatus() {
@@ -174,9 +173,8 @@ class Todos {
 			this.hasStatus(todo.id, "pending") ? pending.push(todo) : "";
 		});
 
-		this.data = [...done, ...hold, ...pending];
-		console.log(this.data);
-		todosUI.renderTodos(this.data);
+		const sortedByStatus = [...done, ...hold, ...pending];
+		todosUI.renderTodos(sortedByStatus);
 	}
 }
 

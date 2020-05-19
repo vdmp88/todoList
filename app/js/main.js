@@ -100,6 +100,7 @@ sortActions.addEventListener("click", (e) => {
 		todos.sortByStatus();
 	} else if (currentTarget.classList.contains("js-sortByTitle")) {
 		todos.sortByTitle(todos.data);
+		todosUI.renderTodos(todos.data);
 	}
 });
 
