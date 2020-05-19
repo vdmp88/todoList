@@ -1,8 +1,9 @@
-import { ui } from "./renderUI.js";
+import { todosUI } from "./renderUI.js";
 
 class Todos {
 	constructor() {
 		this.flag = false;
+		this.loading = true;
 		this.data = [
 			{
 				id: this.generateId(),
@@ -68,7 +69,7 @@ class Todos {
 			}
 		});
 
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	holdAll() {
@@ -80,7 +81,7 @@ class Todos {
 
 		this.flag = !this.flag;
 
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	doneAll() {
@@ -88,12 +89,12 @@ class Todos {
 			todo.status !== "hold" ? (todo.status = "done") : "";
 		});
 
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	deleteAll() {
 		this.data = [];
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	hasStatus(todoId, status) {
@@ -120,7 +121,7 @@ class Todos {
 
 		this.data.push(newItem);
 
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	editTodo(id, newTodo) {
@@ -129,7 +130,7 @@ class Todos {
 				Object.assign(todo, newTodo);
 			}
 		});
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	removeTodo(id) {
@@ -137,7 +138,7 @@ class Todos {
 			todo.id === id ? this.data.splice(index, 1) : "";
 		});
 
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	searchTodo(input) {
@@ -145,17 +146,17 @@ class Todos {
 		let sortedArray = todos.data.filter((todo) => {
 			return todo.title.toLowerCase().indexOf(keyword) > -1;
 		});
-		ui.renderTodos(sortedArray);
+		todosUI.renderTodos(sortedArray);
 	}
 
 	resetSearch(form) {
 		form.reset();
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	sortByTitle(todos) {
 		todos.sort((a, b) => b.title.localeCompare(a.title));
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 
 	sortByStatus() {
@@ -175,7 +176,7 @@ class Todos {
 
 		this.data = [...done, ...hold, ...pending];
 		console.log(this.data);
-		ui.renderTodos(this.data);
+		todosUI.renderTodos(this.data);
 	}
 }
 

@@ -1,6 +1,9 @@
-class UI {
+import todos from "./todos.js";
+
+class TodosUI {
 	constructor() {
 		this.list = document.querySelector(".js-list");
+		this.loader = document.querySelector(".js-loader");
 	}
 
 	renderTodo(todo) {
@@ -100,19 +103,27 @@ class UI {
 		return todo.status === "edit" ? cardItemEdit : cardItem;
 	}
 
-	renderTodos(todos) {
+	renderTodos(todosList) {
 		this.clearList();
 
-		if (todos.length <= 0) {
-			this.list.insertAdjacentHTML(
-				"afterbegin",
-				"<li>Empty list. Please create new task!</li>",
-			);
+		if (todos.loading) {
+			preloader.show(this.loader);
 		}
 
-		todos.forEach((todo) => {
-			this.list.insertAdjacentHTML("afterbegin", this.renderTodo(todo));
-		});
+		setTimeout(() => {
+			preloader.hide(this.loader);
+
+			if (todosList.length <= 0) {
+				this.list.insertAdjacentHTML(
+					"afterbegin",
+					"<li>Empty list. Please create new task!</li>",
+				);
+			}
+
+			todosList.forEach((todo) => {
+				this.list.insertAdjacentHTML("afterbegin", this.renderTodo(todo));
+			});
+		}, 500);
 	}
 
 	clearList() {
@@ -120,6 +131,19 @@ class UI {
 	}
 }
 
-const ui = new UI();
+class LoaderUI {
+	constructor() {}
 
-export { ui };
+	show(loader) {
+		loader.style.display = "flex";
+	}
+
+	hide(loader) {
+		loader.style.display = "none";
+	}
+}
+
+const todosUI = new TodosUI();
+const preloader = new LoaderUI();
+
+export { todosUI };

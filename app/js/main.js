@@ -1,5 +1,5 @@
 import todos from "./todos.js";
-import { ui } from "./renderUI.js";
+import { todosUI } from "./renderUI.js";
 
 const tabLinks = document.querySelectorAll(".tab__links");
 const tabContent = document.querySelectorAll(".tab__content");
@@ -56,7 +56,6 @@ list.addEventListener("click", (e) => {
 	} else if (currentTarget.classList.contains("js-doneStatus")) {
 		todos.setStatus(id, "done");
 	} else if (currentTarget.classList.contains("js-holdStatus")) {
-		todos.sortByStatus();
 		todos.hasStatus(id, "hold")
 			? todos.setStatus(id, "pending")
 			: todos.setStatus(id, "hold");
@@ -104,4 +103,4 @@ sortActions.addEventListener("click", (e) => {
 	}
 });
 
-ui.renderTodos(todos.data);
+todosUI.renderTodos(todos.data);

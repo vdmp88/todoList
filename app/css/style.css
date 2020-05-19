@@ -244,6 +244,42 @@ body {
   .tab__content input {
     padding: 6px 8px; }
 
+@-webkit-keyframes pulse {
+  0% {
+    color: #fff; }
+  100% {
+    color: rgba(255, 255, 255, 0.5); } }
+
+@keyframes pulse {
+  0% {
+    color: #fff; }
+  100% {
+    color: rgba(255, 255, 255, 0.5); } }
+
+.loader {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 20px; }
+  .loader .loader__bottom {
+    -webkit-animation: pulse 0.55s linear alternate infinite;
+            animation: pulse 0.55s linear alternate infinite; }
+
 .button {
   padding: 8px 10px;
   outline: none;
@@ -305,9 +341,9 @@ body {
       .dropdown .dropdown__btn .dropdown__content .button:hover::after {
         content: ""; }
 
-.list {
+.list-wrapper {
   padding: 20px; }
-  .list li.list__item-wrapper + li {
+  .list-wrapper li.list__item-wrapper + li {
     margin-top: 12px; }
 
 .card {
