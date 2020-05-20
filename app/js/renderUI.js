@@ -98,10 +98,8 @@ class TodosUI {
 	renderTodos(todosList) {
 		this.clearList();
 
-		if (todos.loading) {
-			preloader.show(this.loader);
-		}
-
+		preloader.show(this.loader);
+		
 		setTimeout(() => {
 			preloader.hide(this.loader);
 
