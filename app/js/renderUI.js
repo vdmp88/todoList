@@ -32,11 +32,7 @@ class TodosUI {
         <ul class="card__buttons">
           <li>
 			<button class="button button--edit js-editStatus" ${
-				todo.status === "done"
-					? "disabled"
-					: todo.status === "hold"
-					? "disabled"
-					: ""
+				todo.status === "done" || todo.status === "hold" ? "disabled" : ""
 			}>
 				Edit
 			</button>
@@ -57,11 +53,7 @@ class TodosUI {
           </li>
           <li>
 			<button class="button button--done js-doneStatus" ${
-				todo.status === "done"
-					? "disabled"
-					: todo.status === "hold"
-					? "disabled"
-					: ""
+				todo.status === "done" || todo.status === "hold" ? "disabled" : ""
 			}>
 				Done
 			</button>
